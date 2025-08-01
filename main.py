@@ -130,8 +130,3 @@ if __name__ == "__main__":
     client = PurgeCord()
     client.login()
     client.delete_all()
-
-
-# MTAwMjQ2NDA0MzY2NTE5NTAzOA.GDb3fp.0M5Gm0KSNXre8pNMQVmSEPI_9v7cZDO2jTcwJ4
-# nigga
-# 1291095189477130352
