@@ -25,43 +25,37 @@ Purgecord allows you to bulk delete messages in a Discord channel that contain s
 
 1. Clone this repository to your local machine:
 
-    ```bash
-    git clone <repository_url>
-    cd <repository_directory>
-    ```
+   ```bash
+   git clone https://github.com/sshokh/purgecord.git .
+   ```
 
 2. Install the required dependencies:
 
-    ```bash
-    npm install
-    ```
+   ```bash
+   pip install colorama logging requests
+   ```
 
-3. Create a `.env` file in the root directory and add your Discord token:
+3. Start the application:
 
-    ```bash
-    TOKEN="YOUR_DISCORD_TOKEN"
-    ```
+   ```bash
+   python main.py
+   ```
 
-4. Start the application:
-
-    ```bash
-    node .
-    ```
-
-    The tool will guide you through entering the specific word or phrase to delete and the channel/server ID.
+   The tool will guide you through entering the specific word or phrase to delete and the channel/server ID.
 
 ## Usage
 
 After starting the application, you will be prompted to:
 
-1. **What word would you like to bulk delete messages with?**: Specify the word or phrase you'd like to search for and delete.
-2. **In which channel would you like to bulk delete messages? (Enter channel ID)**: Provide the ID of the specific channel where you want to bulk delete messages.
+1. **Enter your discord account token**: Paste the token value you copied earlier.  
+1. **What phrase would you like to bulk delete messages with?**: Specify the word or phrase you'd like to search for and delete.
+2. **In which channel would you like to bulk delete messages?**: Provide the ID of the specific channel where you want to bulk delete messages.
 
 The application will then scan for messages and begin deletion, handling rate limits to avoid overwhelming Discord's API.
 
 ## Security
 
-- **Token privacy**: Your token is stored locally in the `.env` file and is never exposed publicly. Ensure you do not commit this file to version control.
+- **Token privacy**: Your token is not stored anywhere and is never exposed publicly. Ensure you do not commit this file to version control.
 
 ## Contributing
 
