@@ -3,7 +3,7 @@ import requests
 import time
 import os
 
-from logger import logger, ask
+from logger import logger
 
 
 class Session:
@@ -29,7 +29,7 @@ class Session:
 
 class PurgeCord:
     def __init__(self):
-        token = ask("Enter your discord account token: ")
+        token = logger.input("Enter your discord account token: ")
         self.session = Session("https://discord.com/api/v9", token)
 
     def login(self):
@@ -37,14 +37,14 @@ class PurgeCord:
             response = self.session.get("/users/@me")
             if not response.ok:
                 logger.error("Invalid token. Try again")
-                new_token = ask("Enter your discord account token: ")
+                new_token = logger.input("Enter your discord account token: ")
                 self.session.token = new_token
 
     def offset_numbers(self, message_count):
         return list(range(0, message_count + 1, 25))
 
     def fetch_channel(self):
-        id = ask(
+        id = logger.input(
             "In which channel would you like to bulk delete messages: "
         )
 
@@ -56,7 +56,7 @@ class PurgeCord:
         phrase = None
 
         while not phrase:
-            phrase = ask("What phrase would you like to bulk delete messages with? ")
+            phrase = logger.input("What phrase would you like to bulk delete messages with? ")
             if phrase == None:
                 logger.error("You must provide at least one word.")
 
@@ -92,7 +92,7 @@ class PurgeCord:
                 f"/channels/{channel_id}/messages/{message_id}"
             )
             response.raise_for_status()
-            logger.info(f"Deleted message: {content}")
+            logger.success(f"Deleted message: {content}")
         except RequestException as e:
             logger.error(f"Error deleting a message: {e}")
 
@@ -102,7 +102,7 @@ class PurgeCord:
         message_count = self.fetch_message_count(
             channel["guild_id"], channel["id"], phrase
         )
-        logger.info(
+        logger.success(
             f"Found {message_count} message{'s' if message_count == 1 else ''} containing the phrase {phrase} in #{channel["name"]}."
         )
 
@@ -127,6 +127,6 @@ class PurgeCord:
 
 if __name__ == "__main__":
     os.system("cls" or "clear")
-    client = PurgeCord()
-    client.login()
-    client.delete_all()
+    purgecord = PurgeCord()
+    purgecord.login()
+    purgecord.delete_all()
