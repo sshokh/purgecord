@@ -32,7 +32,7 @@ Purgecord allows you to bulk delete messages in a Discord channel that contain s
 2. Install the required dependencies:
 
    ```bash
-   pip install colorama logging requests
+   pip install colorama threading requests
    ```
 
 3. Start the application:
